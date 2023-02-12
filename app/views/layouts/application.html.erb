@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>Original</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <script src="https://kit.fontawesome.com/8d5fcc9eb8.js" crossorigin="anonymous"></script>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
+  </head>
+  <body>
+    <header>
+      <div class="header-title">
+        <%= link_to "nomadcafe", posts_top_path %>
+      </div>
+      <div class="header-list">
+        <% if user_signed_in? %>
+          <i class="fa-solid fa-user"></i>
+          <%= link_to current_user.name, user_path(current_user.id) %>
+        <% else %>
+          <i class="fa-solid fa-user"></i>
+          ゲスト
+        <% end %>
+      </div>
+    </header>
+    <div class="container">
+      <button class="button" data-micromodal-trigger="modal-1">
+        OPEN
+      </button>
+      <div class="modal" id="modal-1" aria-hidden="true">
+        <div class="modal-overlay" data-micromodal-close>
+          <div class="modal-container">
+            <div class="modal-content">
+              <h2>ログイン</h2>
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                <div class="field">
+                  <%= f.label :メールアドレス %>
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email"  %>
+                </div>
+                <div class="field">
+                  <%= f.label :パスワード %>
+                  <%= f.password_field :password, autocomplete: "current-password" %>
+                </div>
+                <% if devise_mapping.rememberable? %>
+                  <div class="field">
+                    <%= f.check_box :remember_me %>
+                    <%= f.label :情報を記録する %>
+                  </div>
+                <% end %>
+                <div class="actions">
+                  <%= f.submit "ログイン" %>
+                </div>
+              <% end %>
+              <%= render "users/shared/links" %>
+            </div>
+            <div class="modal-footer">
+              <button class="button" data-micromodal-close>
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+      <p>Copyright © GeekSalon All Rights Reserved.</p>
+    </footer>
+    <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+  </body>
+</html>

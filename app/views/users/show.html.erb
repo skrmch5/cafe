@@ -1,0 +1,29 @@
+<br>
+<br>
+<br>
+<h2>mypage</h2>
+<p>name : <%= @user.name %></p>
+<p>e-mail : <%= @user.email %></p>
+<p>profile : <%= @user.profile %></p>
+
+<%= link_to "新規投稿へ", new_post_path %>
+
+<% if current_user.id == @user.id %>
+  <%= link_to "編集する", edit_user_registration_path %>
+<% end %>
+
+<h4>ユーザーの投稿一覧</h4>
+<% @user.posts.each do |t| %>
+  <%= t.user.name %>
+  <%= t.body %>
+<% end %>
+
+<h4>いいねした投稿一覧</h4>
+<% @user.liked_posts.each do |t| %>
+  <%= t.user.name %>
+  <%= t.body %>
+<% end %>
+
+<br>
+
+<%= link_to "投稿一覧に戻る", posts_path %>
