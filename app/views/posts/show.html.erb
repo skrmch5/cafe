@@ -1,98 +1,199 @@
-<h3>投稿詳細</h3>
+<div class="show">
 
-<div class="post">
+    <div class="show-cafename">
+        <%= @post.body %>
+           <div class="show-book">
 
-  評価：
-      <span class="star-rating">
-         <span class="star-rating-front" style="width: <%= getPercent(@post.level) %>%;">★★★★★</span>
-         <span class="star-rating-back">★★★★★</span>
-      </span>
-  <br>
-  <%= image_tag @post.image_url, size: "250x200" if @post.image? %>
-  <br>
-  <%= @post.body %>
-  <br>
-  <%= @post.created_at %>
+            <% if user_signed_in? %>
+                <% if current_user.already_liked?(@post) %>
+                    <%= button_to post_like_path(@post), method: :delete do %>
+                        <i class="fa-solid fa-bookmark"></i>
+                    <% end %>
+                <% else %>
+                    <%= button_to post_likes_path(@post), method: :post do %>
+                        <i class="fa-regular fa-bookmark"></i>
+                    <% end %>
+                <% end %>
+            <% else %>
+                <i class="fa-regular fa-bookmark"></i>
+            <% end %>
 
-    <% if user_signed_in? %>
-      <% if current_user.already_liked?(@post) %>
-        <%= button_to post_like_path(@post), method: :delete do %>
-          <i class="fas fa-heart"></i><%= @post.likes.count %>
-          <% end %>
-      <% else %>
-        <%= button_to post_likes_path(@post), method: :post do %>
-          <i class="fas fa-heart"></i><%= @post.likes.count %>
-      <% end %>
-    <% end %>
+        </div>
+    </div>
 
-     <% else %>
-      <i class="fas fa-heart"></i><%= @post.likes.count %>
-    <% end %>
+        <div class="show-list">
+            <%= link_to "編集", edit_post_path(@post.id) %>
+            <%= link_to "削除", post_path(@post.id), method: :delete %>
+            最終更新日：<%= @post.created_at %>
+        </div>
 
-  <%= link_to "削除する", post_path(@post.id), method: :delete %>
-  <%= link_to "編集する", edit_post_path(@post.id) %>
+        <div class="show-informations">
+
+            <h3>基本情報</h3>
+                
+            <div class="show-information1">
+                <div class="show-information2">アクセス</div>
+                <p><%= @post.body2 %></p>
+            </div>
+
+            <div class="show-information1">
+                <div class="show-information2">営業時間</div>
+                <p><%= @post.body3 %></p>
+            </div>
+
+            <div class="show-information1">
+                <div class="show-information2">定休日</div>
+                <p><%= @post.body4 %></p>
+            </div>
+
+            <div class="show-information1">
+                <div class="show-information2">HP</div>
+                <p><%= @post.body5 %></p>
+            </div>
+
+            <div class="show-information1">
+                <div class="show-information2">Twitter</div>
+                <p><%= @post.body6 %></p>
+            </div>
+
+            <div class="show-information1">
+                <div class="show-information2">Instagram</div>
+                <p><%= @post.body7 %></p>
+            </div>
+
+            <div class="show-information1">
+                <div class="show-information2">Wi-Fi</div>
+                <p><%= @post.wifi %></p>
+            </div>
+
+            <div class="show-information1">
+                <div class="show-information2">コンセント</div>
+                <p><%= @post.outlet %></p>
+            </div>
+
+            <div class="show-googlemap">
+
+                <div id='map'></div>
+
+                <style>
+                #map {
+                width: 280px; height: 410px;
+                }
+                </style>
+
+                <!-- js部分 -->
+                <script>
+                //初期マップの設定
+                let map
+                let marker
+                function initMap(){
+                geocoder = new google.maps.Geocoder()
+
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center:  {lat: <%= @post.lat %>, lng: <%= @post.lng %>},
+                    zoom: 15,
+                });
+
+                marker = new google.maps.Marker({
+                    position:  {lat: <%= @post.lat %>, lng: <%= @post.lng %>},
+                    map: map
+                });
+                }
+                </script>
+
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBadobo2NJ9FUPJOJukDECqY4aqfxIlKjY&callback=initMap" async defer></script>
+    
+            </div>
+
+        </div>
+        
+
+    
+    
+
+    <div class="comment-wrapper">
+
+        <h3>口コミ一覧</h3>
+
+        <div class="show-reviews">
+                
+            <% @reviews.each do |c| %>
+
+                <div class="show-review">
+
+                    <div class="show-review1">
+
+                        <div><i class="fa-regular fa-circle-user"></i></div>
+                        <div class="show-review-name"><%= c.user.name unless c.user.blank? %></div>
+
+                        <div>
+                        <span class="star-rating">
+                            <span class="star-rating-front" style="width: <%= getPercent(c.eve) %>%;">★★★★★</span>
+                            <span class="star-rating-back">★★★★★</span>
+                        </span> 
+                        </div>
+                        
+                    </div>
+
+                    <%= c.content%>
+
+                </div>
+        
+            <% end %>
+
+        </div>
+
+    </div>
+
 
 </div>
 
-<h4>いいねしたユーザー</h4>
-<% @post.liked_users.each do |user| %>
-  <li><%= user.email %></li>
+
+
+<div class="new2">
+
+<div class="new2-container">
+
+<div class="review-wrapper">
+
+<% if user_signed_in? %>
+    
+    <%= form_with(model: [@post, @review], local: true) do |f| %>
+
+        <h4>新規口コミ</h4>
+
+        <div class="post_form">
+            <%= f.radio_button :eve,  5 ,id: 'star6'%>
+            <label for="star6"><span class="text"></span>★</label>
+
+            <%= f.radio_button :eve,  4 ,id: 'star7'%>
+            <label for="star7"><span class="text"></span>★</label>
+
+            <%= f.radio_button :eve, 3 ,id: 'star8'%>
+            <label for="star8"><span class="text"></span>★</label>
+
+            <%= f.radio_button :eve, 2 ,id: 'star9'%>
+            <label for="star9"><span class="text"></span>★</label>
+
+            <%= f.radio_button :eve, 1 ,id: 'star10'%>
+            <label for="star10"><span class="text"></span>★</label>
+        </div>
+
+        <div class="new2-comment">
+            <%= f.text_area :content %>
+                <div class="new2-comment-button">
+                <%= button_tag type: "submit" do %>
+                    <i class="fa-regular fa-comment"></i> 投稿
+                <% end %>
+            </div>
+        </div>
+
+    <% end %>
+
 <% end %>
 
-<div class="comment-wrapper">
-
-  <h4>コメント一覧</h4>
-  <% @comments.each do |c| %>
-    <div>
-      <%= c.user.email unless c.user.blank? %>
-      <br>
-      <%= c.content %>
-    </div>
-      <br>
-  <% end %>
-
-  <% if user_signed_in? %>
-    <%= form_with(model: [@post, @comment], local: true) do |f| %>
-      <%= f.text_area :content %>
-      <%= button_tag type: "submit" do %>
-        <i class="far fa-comments"></i>コメントする
-      <% end %>
-    <% end %>
-  <% end %>
+</div>
+    
+</div>    
 
 </div>
-
-<br>
-
-<div id='map'></div>
-
-<style>
-#map {
-  height: 600px;
-  width: 100%;
-}
-</style>
-
-<!-- js部分 -->
-<script>
-//初期マップの設定
-let map
-let marker
-function initMap(){
-  geocoder = new google.maps.Geocoder()
-
-  map = new google.maps.Map(document.getElementById('map'), {
-    center:  {lat: <%= @post.lat %>, lng: <%= @post.lng %>},
-    zoom: 15,
-  });
-
-   marker = new google.maps.Marker({
-    position:  {lat: <%= @post.lat %>, lng: <%= @post.lng %>},
-    map: map
-  });
-}
-</script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBadobo2NJ9FUPJOJukDECqY4aqfxIlKjY&callback=initMap" async defer></script>
-
-<%= link_to "投稿一覧に戻る", posts_path %>

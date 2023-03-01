@@ -11,7 +11,8 @@ class PostsController < ApplicationController
       else
         @posts = Post.where("body LIKE ? ",'%' + params[:search] + '%')
       end
-      @posts = @posts.page(params[:page]).per(3)
+      # @posts = @posts.page(params[:page]).per(9)
+      
     end
       
     def new
@@ -34,6 +35,8 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
       @comments = @post.comments
       @comment = Comment.new
+      @reviews = @post.reviews
+      @review = Review.new
     end
       
     def edit
@@ -68,7 +71,7 @@ class PostsController < ApplicationController
       stored_location_for(resource_or_scope) || super
     end
     def post_params
-      params.require(:post).permit(:body, :image, :level, :tag_ids,:lat,:lng)
+      params.require(:post).permit(:body, :body2, :body3, :body4, :body5, :body6,:body7, :image, :level, :tag_ids,:lat,:lng,:wifi,:outlet)
     end
     
 end

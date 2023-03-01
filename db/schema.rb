@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_04_085826) do
+ActiveRecord::Schema.define(version: 2023_02_21_122928) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
@@ -49,6 +49,25 @@ ActiveRecord::Schema.define(version: 2023_02_04_085826) do
     t.integer "level"
     t.float "lat"
     t.float "lng"
+    t.text "body2"
+    t.string "body3"
+    t.string "body4"
+    t.string "body5"
+    t.string "body6"
+    t.string "body7"
+    t.string "wifi"
+    t.string "outlet"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "eve"
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "content"
+    t.index ["post_id"], name: "index_reviews_on_post_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -77,4 +96,6 @@ ActiveRecord::Schema.define(version: 2023_02_04_085826) do
   add_foreign_key "likes", "users"
   add_foreign_key "post_tags", "posts"
   add_foreign_key "post_tags", "tags"
+  add_foreign_key "reviews", "posts"
+  add_foreign_key "reviews", "users"
 end

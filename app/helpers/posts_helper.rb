@@ -11,4 +11,5 @@ module PostsHelper
           return 0
         end
     end
+
 end

@@ -1,3 +1,190 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+//マイページ
+
+.show-information {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-top: 60px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 60px;
+    font-family: "Tsukushi A Round Gothic","筑紫A丸ゴシック";
+    font-size: 30px;
+}
+
+.show-information i {
+    padding-right: 10px;
+}
+
+.show-information a {
+    text-decoration: none;
+    color: black;
+    padding-left: 25px;
+    font-size: 16px;
+}
+
+.container {
+  padding: 100px;
+  padding-bottom: 400px;
+}
+
+.tab-list {
+  border-top: 1px solid #dedede;
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  color:gray;
+  padding-right: 100px;
+  padding-left: 100px;
+  font-family: "Tsukushi A Round Gothic","筑紫A丸ゴシック";
+
+}
+
+.tab-item {
+  border: none;
+  cursor: pointer;
+  padding-top:15px;
+  margin-bottom: 100px;;
+}
+
+.tab-item.is-open {
+  color: black;
+  border-top :1px solid black;
+  padding-top:15px;
+  margin-top:-1px;
+}
+
+.tab-item a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.is-open {
+  display: block;
+}
+
+//無料会員登録
+
+.registrations-new-title {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.registrations-new {
+  display: flex;
+  justify-content: center;
+}
+
+.registrations-new-field {
+  margin: 0px 0px 20px 0px;
+}
+
+.registrations-new-field input {
+  width: 320px;
+  height:40px;
+}
+
+.registrations-new-actions {
+  margin: 40px 0px 240px 0px;
+  display: flex;
+  justify-content: center;
+}
+
+
+.registrations-new-actions input {
+  width: 120px; height: 40px;
+}
+
+//パスワードを忘れた場合
+
+
+.passwords-new-title {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.passwords-new {
+  display: flex;
+  justify-content: center;
+}
+
+.passwords-new-field {
+  margin: 0px 0px 20px 0px;
+}
+
+.passwords-new-field input {
+  width: 320px;
+  height:40px;
+}
+
+.passwords-new-actions {
+  margin: 40px 0px 240px 0px;
+  display: flex;
+  justify-content: center;
+}
+
+
+.passwords-new-actions input {
+  width: 160px; height: 40px;
+}
+
+.tab-content li {
+  margin-left: 80px;
+  font-size: 20px;
+}
+
+.tab-content a {
+  text-decoration: none;
+  color: black;
+}
+
+.tab-content-2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+   margin-right:80px;
+   margin-bottom: 20px;
+}
+
+.tab-content-3 {
+  display: flex;
+  align-items: center;
+}
+
+
+.post-wifi2 {
+  display: flex;
+  justify-content: left;
+  font-size: 18px;
+}
+
+.post-outlet2 {
+  display: flex;
+  justify-content: left;
+    font-size: 18px;
+
+}
+
+.post-wifi2 p {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-right: 24px;
+}
+
+.post-outlet2 p {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-right: 24px;
+
+}

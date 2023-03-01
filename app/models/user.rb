@@ -9,10 +9,13 @@ class User < ApplicationRecord
   has_many :liked_posts, through: :likes, source: :post
   has_many :comments, dependent: :destroy
 
+  has_many :reviews, dependent: :destroy
+
   validates :name, presence: true 
   validates :profile, length: { maximum: 200 } 
 
   def already_liked?(post)
     self.likes.exists?(post_id: post.id)
   end
+  
 end

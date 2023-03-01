@@ -1,29 +1,76 @@
-<br>
-<br>
-<br>
-<h2>mypage</h2>
-<p>name : <%= @user.name %></p>
-<p>e-mail : <%= @user.email %></p>
-<p>profile : <%= @user.profile %></p>
-
-<%= link_to "新規投稿へ", new_post_path %>
-
 <% if current_user.id == @user.id %>
-  <%= link_to "編集する", edit_user_registration_path %>
+<div class="show-information">
+
+    <div class="show-username">
+      <i class="fa-regular fa-circle-user"></i>
+      <%= @user.name %>
+    </div>
+
+    <div class="show-edit">
+      <%= link_to "プロフィール編集", edit_user_registration_path %>
+    </div>
+
+</div>
 <% end %>
 
-<h4>ユーザーの投稿一覧</h4>
-<% @user.posts.each do |t| %>
-  <%= t.user.name %>
-  <%= t.body %>
-<% end %>
 
-<h4>いいねした投稿一覧</h4>
-<% @user.liked_posts.each do |t| %>
-  <%= t.user.name %>
-  <%= t.body %>
-<% end %>
 
-<br>
+<div class="container">
 
-<%= link_to "投稿一覧に戻る", posts_path %>
+  <ul class="tab-list" id="tab-1">
+
+    <li class="tab-item is-open">
+      <i class="fa-regular fa-bookmark"></i>
+      <a href="#dog" data-toggle>保存済み</a>
+    </li>
+
+    <li class="tab-item">
+      <i class="fa-solid fa-mug-saucer"></i>
+      <a href="#cat" data-toggle>登録</a>
+    </li>
+
+  </ul>
+  
+    <div class="tab-content is-open" id="dog">
+   
+        <% @user.liked_posts.each do |t| %>
+        
+            <div class="tab-content-2">
+                <li><%= link_to t.body, post_path(t.id) %></li>
+                <div class="tab-content-3">
+                    <div class="post-wifi2">
+                        <p><i class="fa-solid fa-wifi"></i></p>
+                        <p><%= t.wifi %></p>
+                    </div>
+                                <div class="post-outlet2">
+                                    <p><i class="fa-solid fa-plug"></i></p>
+                                    <p><%= t.outlet %></p></p>
+                                </div>
+                </div>
+            </div>
+
+        <% end %>
+    
+    </div>
+
+  <div class="tab-content" id="cat">
+
+    <% @user.posts.each do |t| %>
+        <div class="tab-content-2">
+           <li><%= link_to t.body, post_path(t.id) %></li>
+                <div class="tab-content-3">
+                    <div class="post-wifi2">
+                        <p><i class="fa-solid fa-wifi"></i></p>
+                        <p><%= t.wifi %></p>
+                    </div>
+                                <div class="post-outlet2">
+                                    <p><i class="fa-solid fa-plug"></i></p>
+                                    <p><%= t.outlet %></p></p>
+                                </div>
+                </div>
+        </div>
+    <% end %>
+
+  </div>
+
+</div>

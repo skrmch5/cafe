@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
-  get 'posts/top'
-  root 'posts#top'
+  get 'posts/index'
+  root 'posts#index'
 
   resources :posts, only: [:index]
   resources :users, only: [:show]
@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   resources :posts do
     resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create]
+    resources :reviews, only: [:create]
+
   end
 
 end

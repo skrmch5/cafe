@@ -1,0 +1,227 @@
+* {
+  font-family: "Tsukushi A Round Gothic","筑紫A丸ゴシック";
+}
+
+.new {
+    background-color: #DACDC1;
+    padding: 170px 170px 170px 170px;
+    margin:0px 0px -50px 0px;
+}
+
+.new-container {
+    background-color:white;
+    margin-bottom:100px;
+    padding: 80px 200px 80px 200px;
+    border-radius: 20px;
+    font-size: 20px;
+}
+
+.new-subtitle {
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  margin-bottom: 60px;
+}
+
+//google map
+
+.new-attention {
+  margin-top: 120px;
+  
+  margin-bottom: 50px;
+  text-align: center;
+  font-size:15px;
+  color:red;
+}
+
+.new-cafename {
+  margin-bottom: 50px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.new-cafename p {
+  margin-bottom: 10px;
+}
+
+.new-cafename1 {
+  width: 250px;
+  height:35px;
+}
+
+.new-cafename2 {
+  width: 50px;
+  height:35px;
+}
+
+.new-googlemap {
+  margin-bottom: 40px;
+}
+
+.new-latlng {
+  font-size: 10px;
+}
+.new-latlng input#lat {
+  border:none;
+  color: white;
+}
+.new-latlng input#lng {
+  border:none;
+  color: white;
+}
+
+.new-mapposition input {
+  border: none;
+}
+
+.new-mapposition input#lat {
+  color: rgb(255, 255, 255);
+}
+
+.new-mapposition input#lng{
+  color: white;
+}
+
+//basic information
+
+.new-listtop {
+  margin-top:80px;
+}
+
+.new-listhp {
+  text-transform: uppercase;
+}
+.new-list p {
+  margin-bottom: 20px;
+  padding-left: 15px;
+  border-left: 3px solid #6a5b51;
+}
+
+.new-list input {
+  width: 100%; height:40px;
+  margin-bottom: 40px;
+}
+
+.new-list textarea {
+  width: 100%; height:80px;
+  margin-bottom: 40px;
+}
+
+.new-wifi {
+  display: flex;
+  justify-content :space-around;
+  margin-right: 90px;
+  margin-left: 50px;
+}
+
+.new-wifi input {
+  transform: scale(0.6);
+}
+
+.new-wifi-name {
+  font-size: 24px;
+}
+
+.new-outlet {
+  display: flex;
+  justify-content :space-around;
+  margin-right: 90px;
+  margin-left: 50px;
+}
+
+.new-outlet input {
+  transform: scale(0.6);
+}
+
+.new-wifi-name {
+  font-size: 24px;
+}
+
+
+//cover photo
+
+.new-coverphoto {
+  display: flex;
+  justify-content: center;
+}
+
+.new-coverphoto input {
+  margin-top: 120px;
+  margin-bottom: 60px;
+}
+
+//submit
+
+.new-submit {
+  text-align: center;
+}
+
+.new-submit input {
+  font-size: 20px;
+}
+
+.new-submit input {
+  width:300px; height:60px;
+  border: none;
+  border-radius: 30px;
+  background-color:white;
+}
+
+//stepline
+
+
+.timeline-003 {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    width: 100%;
+    padding: 0;
+}
+
+.timeline-003 li {
+    display: flex;
+    flex: 1 1;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    color: #969da3;
+    font-size: .8em;
+}
+
+.timeline-003 li.prev,
+.timeline-003 li.current {
+    color:   #6a5b51;
+}
+
+.timeline-003 li::before {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-bottom: 6px;
+    content: '';
+    border: 2px solid #d6dde3;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+.timeline-003 li.prev::before,
+.timeline-003 li.current::before {
+    border-color:   #6a5b51;
+}
+
+.timeline-003 li:not(:last-child)::after {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    z-index: -1;
+    width: 100%;
+    height: 2px;
+    background-color: #d6dde3;
+    content: '';
+}
+
+.timeline-003 li.current::before,
+.timeline-003 li.prev::after {
+    background-color:   #6a5b51;
+}
